@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="ru.itis.models.User"  table="shop_user">
+        <id name="userID" type="java.lang.Long" column = "user_id">
+            <generator class="identity"/>
+        </id>
+
+        <property name="firstName" column="first_name"/>
+        <property name="lastName" column="last_name"/>
+        <property name="patronymic" column="patronymic"/>
+        <property name="phoneNumber" column="phone_number"/>
+        <property name="email" column="email"/>
+        <property name="password" column="password"/>
+
+        <one-to-one name="basket" class="ru.itis.models.Basket"
+                    constrained="true"/>
+
+    </class>
+
+</hibernate-mapping>

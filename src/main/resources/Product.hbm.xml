@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="ru.itis.models.Product" table="product">
+        <id name="id" type="java.lang.Long" column = "product_id">
+            <generator class="identity"/>
+        </id>
+
+        <property name="img" column="img"/>
+        <property name="title" column="title"/>
+        <property name="countOfRooms" column="count_of_rooms"/>
+        <property name="price" column="price"/>
+        <property name="category" column="category"/>
+
+        <set name="baskets" table="basket_product" inverse="true">
+            <key column="product_id"/>
+            <many-to-many column="basket_id" class="ru.itis.models.Basket" />
+        </set>
+    </class>
+
+</hibernate-mapping>

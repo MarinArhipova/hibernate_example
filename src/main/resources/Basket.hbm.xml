@@ -1,0 +1,22 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="ru.itis.models.Basket" table="basket">
+    <id name="id" type="java.lang.Long" column = "id">
+        <generator class="identity"/>
+    </id>
+
+        <one-to-one name="user" class="ru.itis.models.User"
+                    cascade="save-update"/>
+
+    <set name="products" table="basket_product" cascade="save-update" >
+        <key>
+            <column name="user_id"/>
+        </key>
+        <many-to-many column="product_id" class="ru.itis.models.Product"/>
+    </set>
+    </class>
+</hibernate-mapping>
