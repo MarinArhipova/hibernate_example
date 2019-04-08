@@ -6,7 +6,7 @@
 <hibernate-mapping>
 
     <class name="ru.itis.models.Product" table="product">
-        <id name="id" type="java.lang.Long" column = "product_id">
+        <id name="id" type="java.lang.Long" column = "id">
             <generator class="identity"/>
         </id>
 
@@ -16,10 +16,11 @@
         <property name="price" column="price"/>
         <property name="category" column="category"/>
 
-        <set name="baskets" table="basket_product" inverse="true">
+        <list name="baskets" table="basket_product" cascade="save-update">
             <key column="product_id"/>
+            <index column="type"></index>
             <many-to-many column="basket_id" class="ru.itis.models.Basket" />
-        </set>
+        </list>
     </class>
 
 </hibernate-mapping>

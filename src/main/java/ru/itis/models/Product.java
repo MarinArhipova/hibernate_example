@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,5 +20,5 @@ public class Product {
     private String price;
     private String category;
 
-    Set<Basket> baskets;
+    List<Basket> baskets;
 }

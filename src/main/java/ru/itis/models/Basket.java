@@ -3,7 +3,6 @@ package ru.itis.models;
 import lombok.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -12,8 +11,8 @@ import java.util.Set;
 @EqualsAndHashCode(exclude = {"products"})
 public class Basket {
     private Long id;
+    private String title;
 
     private User user;
-
     private List<Product> products;
 }

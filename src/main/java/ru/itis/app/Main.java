@@ -6,13 +6,9 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import ru.itis.models.Basket;
 import ru.itis.models.Product;
-import ru.itis.models.User;
-
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,23 +17,19 @@ public class Main {
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        User user = User.builder()
-                .firstName("Marina")
-                .lastName("Arh")
-                .patronymic("Mih")
-                .phoneNumber("356890")
-                .email("3556@mail.ru")
-                .password("1234")
-                .build();
-        List<Product> products = new ArrayList<>();
+//        User user = User.builder()
+//                .firstName("Marina")
+//                .lastName("Arh")
+//                .patronymic("Mih")
+//                .phoneNumber("356890")
+//                .email("3556@mail.ru")
+//                .password("1234")
+//                .build();
+
 
         Basket basket = Basket.builder()
-                .user(user)
-                .products(products)
+                .title("Работай!")
                 .build();
-
-        Set<Basket> baskets= new HashSet<>();
-        baskets.add(basket);
 
         Product variant1 = Product.builder()
                 .img("rtt")
@@ -45,7 +37,6 @@ public class Main {
                 .countOfRooms(3)
                 .price("12346")
                 .category("apartment")
-              //  .baskets(baskets)
                 .build();
 
         Product variant2 = Product.builder()
@@ -54,15 +45,17 @@ public class Main {
                 .countOfRooms(2)
                 .price("1254346")
                 .category("apartment")
-              //  .baskets(baskets)
                 .build();
 
-
+        List<Product> products = new ArrayList<>();
         products.add(variant1);
         products.add(variant2);
         basket.setProducts(products);
+        session.save(basket);
 
-        session.save(baskets);
+        basket.setTitle("Please");
+        session.save(basket);
+
         transaction.commit();
         session.close();
     }

@@ -6,7 +6,7 @@
 <hibernate-mapping>
 
     <class name="ru.itis.models.User"  table="shop_user">
-        <id name="userID" type="java.lang.Long" column = "user_id">
+        <id name="id" type="java.lang.Long" column = "id">
             <generator class="identity"/>
         </id>
 
@@ -17,8 +17,13 @@
         <property name="email" column="email"/>
         <property name="password" column="password"/>
 
-        <one-to-one name="basket" class="ru.itis.models.Basket"
-                    constrained="true"/>
+        <set name="baskets" table="basket"
+             inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id"/>
+            </key>
+            <one-to-many class="ru.itis.models.Basket"/>
+        </set>
 
     </class>
 

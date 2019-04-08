@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.Set;
 
 @Data
@@ -11,7 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 public class User {
-    private Long userID;
+    private Long id;
 
     private String firstName;
     private String lastName;
@@ -20,5 +21,5 @@ public class User {
     private String email;
     private String password;
 
-    private Set<Basket> basket;
+    private Set<Basket> baskets;
 }
